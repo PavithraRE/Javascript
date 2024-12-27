@@ -1,0 +1,35 @@
+.<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>My Webpage</title> 
+</head> 
+<body> 
+ 
+<script> 
+async function fetchMultipleResources() { 
+    const urls = [ 
+        'https://jsonplaceholder.typicode.com/posts', 
+        'https://jsonplaceholder.typicode.com/users', 
+        'https://jsonplaceholder.typicode.com/comments' 
+    ]; 
+ 
+    try { 
+        const [posts, users, comments] = await Promise.all(urls.map(url => 
+fetch(url).then(response => response.json()))); 
+ 
+        console.log('Posts:', posts); 
+        console.log('Users:', users); 
+        console.log('Comments:', comments); 
+ 
+    } catch (error) { 
+        console.error('Error fetching data:', error); 
+    } 
+} 
+ 
+fetchMultipleResources(); 
+</script> 
+ 
+</body> 
+</html>
